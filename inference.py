@@ -30,7 +30,8 @@ def single_inference(model, img):
     rw = rw - rw % 64    
 
     img = pil_to_tensor(img)
-    img = img[None, :, :, :].cuda()
+    #print(type(img))
+    img = img[None, :, :, :]#.cuda()
 
     input_tensor = F.interpolate(img, size=(rh, rw), mode='bilinear')
     with torch.no_grad():

@@ -44,8 +44,8 @@ if not os.path.exists(args.pretrained_weight):
 # --------------- Main ---------------
 # Load Model
 model = HumanMatting(backbone='resnet50')
-model = nn.DataParallel(model).cuda().eval()
-model.load_state_dict(torch.load(args.pretrained_weight))
+model = nn.DataParallel(model).eval()#.cuda().eval()
+model.load_state_dict(torch.load(args.pretrained_weight, map_location=torch.device('cpu')))
 print("Load checkpoint successfully ...")
 
 
